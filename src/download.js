@@ -1,17 +1,27 @@
 const path = require('path');
-const util = require('util');
+const { promisify } = require('util');
 const { trim } = require('lodash');
-const { writeFile } = require('fs');
-const processExec = util.promisify(require('child_process').exec);
+const { writeFile, mkdir } = require('fs');
+const { createHash } = require('crypto');
+const processExec = promisify(require('child_process').exec);
 const assert = require('assert');
-const fsWriteFile = util.promisify(writeFile);
-const downloadPath = path.resolve(__dirname, '../root');
+const fsMkdir = promisify(writeFile);
+const fsWriteFile = promisify(writeFile);
+const downloadPath = path.resolve(__dirname, '../.cached');
+const rootPath = path.resolve(__dirname, '../root');
+const errorFile = path.resolve(downloadPath, 'error-msg.log');
+const successFile = path.resolve(downloadPath, 'success-msg.log');
+const sysErrorFile = path.resolve(downloadPath, 'error.log');
 const downloadZshFile = path.resolve(__dirname, 'download.zsh');
-const errorFile = path.resolve(__dirname, '../root/error-msg.log');
-const successFile = path.resolve(__dirname, '../root/success-msg.log');
-const sysErrorFile = path.resolve(__dirname, '../root/error.log');
+const compressFiles = ['tar.gz'];
+
+
 const zshPath = '/usr/bin/zsh';
 const maxProcessNum = 5;
+
+
+
+
 
 async function download(jsonArr) {
     const asyncArr = [];
@@ -55,20 +65,29 @@ async function download(jsonArr) {
     fsWriteFile(sysErrorFile, `${(new Date()).toLocaleString()}\n ${sysErrorMsgs.join('\n')}`);
 
     async function handleDownload(json) {
-        const { dir, download_url, title } = json;
-        const execScript = `${downloadZshFile} --dir=${dir} --url=${download_url}`;
+        const { dir, download_url } = json;
+        const destDir = path.resolve(dir.replace(downloadPath, rootPath), getFileName(download_url));
+
+        const execScript = `${downloadZshFile} --download_dir=${dir} --download_url=${download_url} --dest_dir=${destDir}`;
         console.log(`exec start: ${execScript}`);
 
+//        getFileName;
+
+
+        const renameFile = async() => {
+
+//            await fsMkdir();
+        };
+
         try {
-            const { stdout, stderr } = await processExec(execScript, {
-                shell: '/usr/bin/zsh',
-                windowsHide: true
-            });
+            const { stdout, stderr } = await processExec(execScript);
+
             if (stderr) {
                 exeErrorMsgs.push(execScript, stderr);
+                renameFile();
                 return true;
             }
-
+            renameFile();
             exeSuccessMsgs.push(execScript, stdout);
         } catch(e) {
             sysErrorMsgs.push(execScript, e);
@@ -79,11 +98,12 @@ async function download(jsonArr) {
 
     function genAsync(json, parentDir) {
         let subDir = parentDir;
-        if (json.dir) {
-            subDir = path.resolve(parentDir, json.dir);
-        }
 
         if (json.assets && json.assets.length > 0) {
+            /* 只有 目录需要dir，文件是shell 分析出来的 */
+            if (json.dir) {
+                subDir = path.resolve(parentDir, json.dir);
+            }
             json.assets.forEach((json) => {
                 genAsync(json, subDir);
             });
@@ -91,9 +111,6 @@ async function download(jsonArr) {
             return;
         }
 
-        if (json.dir) {
-            subDir = path.resolve(parentDir, json.dir);
-        }
         json.dir = subDir;
 
         try {
@@ -106,6 +123,10 @@ async function download(jsonArr) {
 
         asyncArr.push(handleDownload.bind(null, json));
     };
+
+    function getFileName(str) {
+        return createHash('sha1').update(str).digest('hex').slice(20);
+    }
 };
 
 exports.download = download;

@@ -3,7 +3,6 @@
     "dir": "qemu",
     "assets": [{
         "title": "QEMU 5.0.0 Documentation",
-        "dir": "qemu_doc",
         "download_url": "https://qemu.weilnetz.de/doc/5.0/"
     }]
 }

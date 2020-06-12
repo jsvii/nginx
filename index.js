@@ -6,7 +6,7 @@ const { download } = require('./src/download');
 const fsReadFile = promisify(readFile);
 const fsAccess = promisify(access);
 
-const indexFile = path.resolve(__dirname, 'assets/index.txt');
+const indexFile = path.resolve(__dirname, 'assets/index.conf');
 const COMMENT_SIGN = '#';
 
 (async () => {
