@@ -1,0 +1,12 @@
+{
+    "title": "linux shell",
+    "dir": "linux_shell",
+    "assets": [{
+        "title": "Advanced Bash-Scripting Guide",
+        "download_url": "https://tldp.org/LDP/abs/abs-guide.html.tar.gz",
+        "desc": ""
+    }, {
+        "title": "Linux on the Road Linux with Laptops, Notebooks, PDAs, Mobile Phones and Other Portable Devices",
+        "download_url": "https://tldp.org/LDP/Mobile-Guide/Mobile-Guide.html.tar.gz"
+    }]
+}

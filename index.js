@@ -9,7 +9,6 @@ const fsAccess = promisify(access);
 const indexFile = path.resolve(__dirname, 'assets/index.txt');
 const COMMENT_SIGN = '#';
 
-
 (async () => {
     const indexTxt = await fsReadFile(indexFile, 'utf8');
     const jsons = indexTxt.split('\n')
@@ -20,6 +19,7 @@ const COMMENT_SIGN = '#';
     jsons.forEach((jsonFileName) => {
         allJsonPromise.push((async () => {
             const jsonFilePath = path.resolve(__dirname, `assets/${jsonFileName}`);
+
             try {
                 await fsAccess(jsonFilePath);
             } catch (e) {

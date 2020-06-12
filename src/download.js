@@ -7,8 +7,9 @@ const assert = require('assert');
 const fsWriteFile = util.promisify(writeFile);
 const downloadPath = path.resolve(__dirname, '../root');
 const downloadZshFile = path.resolve(__dirname, 'download.zsh');
-const errorFile = path.resolve(__dirname, '../root/error.log');
-const successFile = path.resolve(__dirname, '../root/success.log');
+const errorFile = path.resolve(__dirname, '../root/error-msg.log');
+const successFile = path.resolve(__dirname, '../root/success-msg.log');
+const sysErrorFile = path.resolve(__dirname, '../root/error.log');
 const zshPath = '/usr/bin/zsh';
 const maxProcessNum = 5;
 
@@ -17,6 +18,7 @@ async function download(jsonArr) {
     const promiseExec = [];
     const exeSuccessMsgs = [];
     const exeErrorMsgs = [];
+    const sysErrorMsgs = [];
 
     genAsync({
         title: "app doc",
@@ -47,25 +49,31 @@ async function download(jsonArr) {
 
     await Promise.all(promiseExec);
 
+    console.log('==============end==============');
     fsWriteFile(errorFile, `${(new Date()).toLocaleString()}\n ${exeErrorMsgs.join('\n')}`);
     fsWriteFile(successFile, `${(new Date()).toLocaleString()}\n ${exeSuccessMsgs.join('\n')}`);
-
+    fsWriteFile(sysErrorFile, `${(new Date()).toLocaleString()}\n ${sysErrorMsgs.join('\n')}`);
 
     async function handleDownload(json) {
         const { dir, download_url, title } = json;
         const execScript = `${downloadZshFile} --dir=${dir} --url=${download_url}`;
         console.log(`exec start: ${execScript}`);
-        const { stdout, stderr } = await processExec(execScript, {
-            shell: '/usr/bin/zsh',
-            windowsHide: true
-        });
 
-        if (stderr) {
-            exeErrorMsgs.push(execScript, stderr);
-            return true;
+        try {
+            const { stdout, stderr } = await processExec(execScript, {
+                shell: '/usr/bin/zsh',
+                windowsHide: true
+            });
+            if (stderr) {
+                exeErrorMsgs.push(execScript, stderr);
+                return true;
+            }
+
+            exeSuccessMsgs.push(execScript, stdout);
+        } catch(e) {
+            sysErrorMsgs.push(execScript, e);
         }
 
-        exeSuccessMsgs.push(execScript, stdout);
         return true;
     }
 
@@ -98,9 +106,6 @@ async function download(jsonArr) {
 
         asyncArr.push(handleDownload.bind(null, json));
     };
-
-
-
 };
 
 exports.download = download;

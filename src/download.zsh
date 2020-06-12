@@ -24,6 +24,7 @@ mkdir -p $ASSET_DIR;
 cd $ASSET_DIR;
 
 # -r recursive
-# -np --no-parent
+# -np, --no-parent
 # -nc, --no-clobber;
-wget -r -np -nc $ASSET_URL;
+# -nH, --no-host-directories
+wget -r -np -nc -nH  $ASSET_URL;
