@@ -1,5 +1,3 @@
-root
-!root/.gitkeep
 .cached
 !.cached/.gitkeep
 node_modules
