@@ -12,16 +12,8 @@ const rootPath = path.resolve(__dirname, '../root');
 const errorFile = path.resolve(downloadPath, 'error-msg.log');
 const successFile = path.resolve(downloadPath, 'success-msg.log');
 const sysErrorFile = path.resolve(downloadPath, 'error.log');
-const downloadZshFile = path.resolve(__dirname, 'download.zsh');
-const compressFiles = ['tar.gz'];
-
-
-const zshPath = '/usr/bin/zsh';
+const downloadZshFile = path.resolve(__dirname, 'shell/download.zsh');
 const maxProcessNum = 5;
-
-
-
-
 
 async function download(jsonArr) {
     const asyncArr = [];
@@ -60,6 +52,7 @@ async function download(jsonArr) {
     await Promise.all(promiseExec);
 
     console.log('==============end==============');
+
     fsWriteFile(errorFile, `${(new Date()).toLocaleString()}\n ${exeErrorMsgs.join('\n')}`);
     fsWriteFile(successFile, `${(new Date()).toLocaleString()}\n ${exeSuccessMsgs.join('\n')}`);
     fsWriteFile(sysErrorFile, `${(new Date()).toLocaleString()}\n ${sysErrorMsgs.join('\n')}`);
@@ -67,27 +60,23 @@ async function download(jsonArr) {
     async function handleDownload(json) {
         const { dir, download_url } = json;
         const destDir = path.resolve(dir.replace(downloadPath, rootPath), getFileName(download_url));
+        let execScript = `${downloadZshFile} --download_dir=${dir} --download_url=${download_url} --dest_dir=${destDir}`;
 
-        const execScript = `${downloadZshFile} --download_dir=${dir} --download_url=${download_url} --dest_dir=${destDir}`;
-        console.log(`exec start: ${execScript}`);
-
-//        getFileName;
-
-
-        const renameFile = async() => {
-
-//            await fsMkdir();
-        };
+        console.log(`===========================================`);
+        console.log(`exec start:\n ${execScript}`);
 
         try {
             const { stdout, stderr } = await processExec(execScript);
 
+            console.log(`exec end:\n ${execScript}`);
+            console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~');
+
             if (stderr) {
                 exeErrorMsgs.push(execScript, stderr);
-                renameFile();
+
                 return true;
             }
-            renameFile();
+
             exeSuccessMsgs.push(execScript, stdout);
         } catch(e) {
             sysErrorMsgs.push(execScript, e);

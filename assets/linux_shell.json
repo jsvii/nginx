@@ -4,9 +4,18 @@
     "assets": [{
         "title": "Advanced Bash-Scripting Guide",
         "download_url": "https://tldp.org/LDP/abs/abs-guide.html.tar.gz",
-        "desc": ""
+        "desc": "This document is both a tutorial and a reference on shell scripting with Bash. It assumes no previous knowledge of scripting or programming, but progresses rapidly toward an intermediate/advanced level of instruction . . . all the while sneaking in little nuggets of UNIX® wisdom and lore. It serves as a textbook, a manual for self-study, and as a reference and source of knowledge on shell scripting techniques. The exercises and heavily-commented examples invite active reader participation, under the premise that the only way to really learn scripting is to write scripts. \nThis book is suitable for classroom use as a general introduction to programming concepts."
     }, {
         "title": "Linux on the Road Linux with Laptops, Notebooks, PDAs, Mobile Phones and Other Portable Devices",
-        "download_url": "https://tldp.org/LDP/Mobile-Guide/Mobile-Guide.html.tar.gz"
+        "download_url": "https://tldp.org/LDP/Mobile-Guide/Mobile-Guide.html.tar.gz",
+        "desc": "Linux on the Road Linux with Laptops, Notebooks, PDAs, Mobile Phones and Other Portable Devices Though there are laptop, notebook, PDA and mobile phone related HOWTOs available already, this guide contains a concise survey of documents related to mobile computer devices. Also Linux features, such as installation methods for laptops, notebooks and PDAs as well as configurations for different (network) environments are described.\nAlthough there are some caveats, Linux is a better choice for mobile computer devices than most other operating systems. Because it supports numerous installation methods, works in many heterogenoues environments and needs smaller resources."
+    }, {
+        "title": "Windows+OpenSolaris+CentOS Installation Guide",
+        "download_url": "https://tldp.org/LDP/Win+OpenSolaris+CentOS-Install/Win+OpenSolaris+CentOS-Install.html.tar.gz",
+        "desc": "Explains how three different operating systems can be installed and configured on a single hard disk. The reader may choose from: Microsoft Windows NT/2K/XP + OpenSolaris 2008.11 + CentOS 5.2. Only x86 & x86-compatible architecture multi-booting is discussed and GNU GRUB is the boot loader of choice."
+    }, {
+        "title": "Bash Guide for Beginners",
+        "download_url": "https://tldp.org/LDP/Bash-Beginners-Guide/Bash-Beginners-Guide.html.tar.gz",
+        "desc": "This guide describes the process of submitting and publishing a document with The Linux Documentation Project (TLDP). It includes information about the tools, toolchains and formats used by TLDP. The document's primary audience is new TLDP authors, but it also contains information for seasoned documentation authors."
     }]
 }

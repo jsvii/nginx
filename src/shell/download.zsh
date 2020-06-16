@@ -1,7 +1,8 @@
 #!/usr/bin/zsh
 
-# --dir=path/dir --url=http://
-echo "-------";
+setopt BASH_REMATCH
+TAR_FILE_REG="([^/]+(tar.gz|tar.bz2))$"
+TAR_FILE_NAME=
 
 for i in "$@"; do
     case $i in
@@ -29,8 +30,9 @@ if [[ -d $DEST_DIR ]] || [[ -f $DEST_DIR ]]; then
     rm -rf $DEST_DIR
 fi
 
-mkdir -p $DEST_DIR;
+# in case of old file
 rm -rf $DEST_DIR;
+mkdir -p $DEST_DIR;
 
 cd $ASSET_DIR;
 # -r recursive
@@ -40,13 +42,23 @@ cd $ASSET_DIR;
 wget -r -np -nc -nH  $ASSET_URL;
 fileDIR=${ASSET_URL#*//*/}
 
-echo $fileDIR
+echo "fileDIR is $fileDIR"
 
-
+## just dir
 if [[ -d $fileDIR ]]; then
+    rm -rf $DEST_DIR;
     cp -rf $fileDIR $DEST_DIR;
-elif [[ -f $fileDIR ]]; then
-    echo "---no implemtaiton---";
-else
-    echo "---no implemtaiton---"
+    echo "successful! dir is $DEST_DIR"
+    exit 0;
 fi
+
+## compress file
+if [[ $ASSET_URL =~ $TAR_FILE_REG ]]; then
+    TAR_FILE_NAME=${BASH_REMATCH[1]};
+    tar -xf $fileDIR --strip-components 1 --directory $DEST_DIR
+    echo "successful! dir is $DEST_DIR"
+    exit 0;
+fi
+
+echo "I don't know!"
+exit 1
