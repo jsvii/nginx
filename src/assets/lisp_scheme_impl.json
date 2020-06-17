@@ -1,0 +1,32 @@
+{
+    "title": "Scheme Implemenations",
+    "dir": "lisp_scheme_impl",
+    "assets": [{
+        "title": "Chez Scheme Version 9 User's Guide",
+        "download_url": "https://cisco.github.io/ChezScheme/csug9.5/"
+    }, {
+        "title": "The Scheme Programming Language",
+        "download_url": "https://www.scheme.com/tspl4/"
+    }, {
+        "title": "MIT/GNU Scheme User's Manual",
+        "download_url": "https://www.gnu.org/software/mit-scheme/documentation/mit-scheme-user/index.html"
+    }, {
+        "title": "MIT/GNU Scheme Reference",
+        "download_url": "https://www.gnu.org/software/mit-scheme/documentation/mit-scheme-ref/index.html"
+    }, {
+        "title": "The Incomplete Scheme 48 Reference Manual",
+        "download_url": "https://s48.org/0.55/manual/s48manual.html"
+    }, {
+        "title": "sicp",
+        "download_url": "https://mitpress.mit.edu/sites/default/files/sicp/full-text/book/book.html"
+    }, {
+        "title": "An Introduction to Scheme and its Implementation V14",
+        "download_url": "https://www.cs.utexas.edu/ftp/garbage/cs345/schintro-v14/schintro_toc.html"
+    }, {
+        "title": "An Introduction to Scheme and its Implementation V13",
+        "download_url": "http://www.cs.utexas.edu/ftp/garbage/cs345/schintro-v13/schintro_toc.html"
+    }, {
+        "title": "Yet Another Scheme Tutorial",
+        "download_url": "http://www.shido.info/lisp/idx_scm_e.html"
+    }]
+}

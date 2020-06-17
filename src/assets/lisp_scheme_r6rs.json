@@ -1,0 +1,17 @@
+{
+    "title": "Scheme r6rs",
+    "dir": "lisp_scheme_r6rs",
+    "assets": [{
+        "title": "Revised6 Report on the Algorithmic Language Scheme",
+        "download_url": "http://www.r6rs.org/final/html/r6rs/r6rs.html"
+    }, {
+        "title": "Revised6 Report on the Algorithmic Language Scheme — Standard Libraries",
+        "download_url": "http://www.r6rs.org/final/html/r6rs-lib/r6rs-lib.html"
+    },{
+        "title": "Revised6 Report on the Algorithmic Language Scheme — Non-Normative Appendices",
+        "download_url": "http://www.r6rs.org/final/html/r6rs-app/r6rs-app.html"
+    },{
+        "title": "Revised6 Report on the Algorithmic Language Scheme — Rationale",
+        "download_url": "http://www.r6rs.org/final/html/r6rs-rationale/r6rs-rationale.html"
+    }]
+}

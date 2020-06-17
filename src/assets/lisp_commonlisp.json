@@ -1,0 +1,23 @@
+{
+    "title": "Common lisp",
+    "dir": "lisp_commonlisp",
+    "assets": [{
+        "title": "The Common Lisp Cookbook [Old]",
+        "download_url": "http://cl-cookbook.sourceforge.net/"
+    }, {
+        "title": "The Common Lisp Cookbook",
+        "download_url": "https://lispcookbook.github.io/cl-cookbook/"
+    }, {
+        "title": "Simplified Common Lisp reference",
+        "download_url": "http://jtra.cz/stuff/lisp/sclr/index.html"
+    }, {
+        "title": "Common Lisp the Language, 2nd Edition",
+        "download_url": "https://www.cs.cmu.edu/afs/cs.cmu.edu/project/ai-repository/ai/lang/lisp/doc/cltl/cltl_ht.tgz"
+    }, {
+        "title": "Practical Common Lisp",
+        "download_url": "http://www.gigamonkeys.com/book/"
+    }, {
+        "title": "The Common Lisp HyperSpec",
+        "download_url": "http://ftp.lispworks.com/pub/software_tools/reference/HyperSpec-7-0.tar.gz"
+    }]
+}

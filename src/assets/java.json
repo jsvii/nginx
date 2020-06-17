@@ -1,0 +1,8 @@
+{
+    "title": "Java",
+    "dir": "java",
+    "assets": [{
+        "title": "Java Platform Standard Edition 8 Documentation",
+        "download_url": "https://docs.oracle.com/javase/8/docs/"
+    }]
+}

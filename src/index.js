@@ -24,11 +24,18 @@ const COMMENT_SIGN = '#';
                 await fsAccess(jsonFilePath);
             } catch (e) {
                 console.error(`no such file jsonFilePath, error is \n ${e}`);
-                process.exit();
+                process.exit(1);
             }
             const jsonRaw = await fsReadFile(jsonFilePath, 'utf8');
+            let jsonParsed = {};
+            try {
+                jsonParsed = JSON.parse(jsonRaw);
+            } catch (e) {
+                console.error(`parse Json error, file is:\n ${jsonFilePath} `);
+                process.exit(1);
+            }
 
-            return JSON.parse(jsonRaw);
+            return jsonParsed;
         })());
     });
 

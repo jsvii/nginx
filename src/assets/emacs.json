@@ -1,0 +1,20 @@
+{
+    "title": "emacs",
+    "dir": "emacs",
+    "assets": [{
+        "title": "The Emacs Editor",
+        "download_url": "https://www.gnu.org/software/emacs/manual/html_node/emacs/index.html"
+    }, {
+        "title": "An Introduction to Programming in Emacs Lisp",
+        "download_url": "https://www.gnu.org/software/emacs/manual/html_node/eintr/index.html"
+    }, {
+        "title": "Emacs Lisp",
+        "download_url": "https://www.gnu.org/software/emacs/manual/html_node/elisp/index.html"
+    }, {
+        "title": "Magit User Manual",
+        "download_url": "https://magit.vc/manual/2.90.1/magit/"
+    },{
+        "title": "Geiser",
+        "download_url": "https://www.nongnu.org/geiser/"
+    }]
+}

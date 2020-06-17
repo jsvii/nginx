@@ -1,0 +1,8 @@
+{
+    "title": "Scheme r5rs",
+    "dir": "lisp_scheme_r5rs",
+    "assets": [{
+        "title": "Revised5 Report on the Algorithmic Language Scheme",
+        "download_url": "https://schemers.org/Documents/Standards/R5RS/HTML/"
+    }]
+}
