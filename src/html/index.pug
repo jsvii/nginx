@@ -1,0 +1,34 @@
+doctype html
+html(lang='en')
+  head
+    meta(http-equiv='Content-Type', content='text/html; charset=UTF-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1, maximum-scale=1.0')
+    title Starter Template - Materialize
+    // CSS
+    link(href='./src/materialize.min.css', type='text/css', rel='stylesheet', media='screen,projection')
+    link(href='./src/style.css', type='text/css', rel='stylesheet', media='screen,projection')
+  body
+    #index-banner.section.no-pad-bot
+      .container
+        .row.center
+          .col.s12.m10.offset-m1
+            h1.header API Document
+          .col.s12.m8.offset-m2
+            h4.light 速查文档
+    section.container
+      each topic in data
+        .divider
+        .section
+          .row.center
+            h3.light.header=topic.title
+          .row
+            .col.s12.m10.offset-m1
+              .row
+                each doc in topic.assets
+                  .col.s12.m4
+                    .center.promo
+                      a(href=doc.link)
+                        i.material-icons=doc.title
+
+    script(src='./src/jquery.min.js')
+    script(src='./src/materialize.min.js')

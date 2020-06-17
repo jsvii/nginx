@@ -1,18 +1,22 @@
 const path = require('path');
 const { promisify } = require('util');
 const { trim } = require('lodash');
-const { writeFile, mkdir } = require('fs');
+const { writeFile, mkdir, readFileSync } = require('fs');
 const { createHash } = require('crypto');
 const processExec = promisify(require('child_process').exec);
 const assert = require('assert');
+const { compileFile } = require('pug');
+
 const fsMkdir = promisify(writeFile);
 const fsWriteFile = promisify(writeFile);
 const downloadPath = path.resolve(__dirname, '../.cached');
 const rootPath = path.resolve(__dirname, '../root');
+const indexFile = path.resolve(rootPath, 'index.html');
 const errorFile = path.resolve(downloadPath, 'error-msg.log');
 const successFile = path.resolve(downloadPath, 'success-msg.log');
 const sysErrorFile = path.resolve(downloadPath, 'error.log');
 const downloadZshFile = path.resolve(__dirname, 'shell/download.zsh');
+const compiler = compileFile(path.resolve(__dirname, 'html/index.pug'), {encoding: 'utf8'});
 const maxProcessNum = 5;
 
 async function download(jsonArr) {
@@ -27,10 +31,13 @@ async function download(jsonArr) {
         dir: downloadPath,
         assets: jsonArr
     });
-    let num = maxProcessNum;
-    while(num > 0) {
-        promiseExec.push(Promise.resolve(true));
-        num--;
+
+    {
+        let num = maxProcessNum;
+        while(num > 0) {
+            promiseExec.push(Promise.resolve(true));
+            num--;
+        }
     }
 
     while(asyncArr.length > 0) {
@@ -56,15 +63,14 @@ async function download(jsonArr) {
     fsWriteFile(errorFile, `${(new Date()).toLocaleString()}\n ${exeErrorMsgs.join('\n')}`);
     fsWriteFile(successFile, `${(new Date()).toLocaleString()}\n ${exeSuccessMsgs.join('\n')}`);
     fsWriteFile(sysErrorFile, `${(new Date()).toLocaleString()}\n ${sysErrorMsgs.join('\n')}`);
+    fsWriteFile(indexFile, compiler({ data: jsonArr }));
 
     async function handleDownload(json) {
-        const { dir, download_url } = json;
-        const destDir = path.resolve(dir.replace(downloadPath, rootPath), getFileName(download_url));
+        const { dir, download_url, destDir } = json;
         let execScript = `${downloadZshFile} --download_dir=${dir} --download_url=${download_url} --dest_dir=${destDir}`;
 
         console.log(`===========================================`);
         console.log(`exec start:\n ${execScript}`);
-
         try {
             const { stdout, stderr } = await processExec(execScript);
 
@@ -83,6 +89,11 @@ async function download(jsonArr) {
         }
 
         return true;
+    }
+
+
+    function genIndex(json) {
+
     }
 
     function genAsync(json, parentDir) {
@@ -109,6 +120,9 @@ async function download(jsonArr) {
             console.log(e);
             process.exit(1);
         }
+
+        json.destDir = path.resolve(json.dir.replace(downloadPath, rootPath), getFileName(json.download_url));
+        json.link = json.destDir.replace(rootPath, '');
 
         asyncArr.push(handleDownload.bind(null, json));
     };

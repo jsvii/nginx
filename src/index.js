@@ -2,7 +2,7 @@ const { readFile, access } = require('fs');
 const { promisify } = require('util');
 const path = require('path');
 const { trim } = require('lodash');
-const { download } = require('./src/download');
+const { download } = require('./download');
 const fsReadFile = promisify(readFile);
 const fsAccess = promisify(access);
 

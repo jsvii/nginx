@@ -1,0 +1,14 @@
+{
+    "title": "Gnu Linux Compile Tools",
+    "dir": "linux_gnu_compile",
+    "assets": [{
+        "title": "GNU Make Manual",
+        "download_url": "https://www.gnu.org/software/make/manual/make.html_node.tar.gz"
+    }, {
+        "title": "Debugging with GDB",
+        "download_url": "https://sourceware.org/gdb/current/onlinedocs/gdb/"
+    }, {
+        "title": "RMS's gdb Debugger Tutorial",
+        "download_url": "http://www.unknownroad.com/rtfm/gdbtut/gdbtoc.html"
+    }]
+}

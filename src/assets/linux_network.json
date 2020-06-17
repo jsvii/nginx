@@ -1,0 +1,18 @@
+{
+    "title": "linux network Programming",
+    "dir": "linux_net",
+    "assets": [{
+        "title": "Policy Routing With Linux",
+        "download_url": "http://mysuse/iproute2_policy_routing_book/TOC.html",
+        "desc": "Policy Routing With Linux - Online Edition by Matthew G. Marsh."
+    }, {
+        "title": "Linux Advanced Routing & Traffic Control HOWTO",
+        "download_url": "http://tldp.org/HOWTO/Adv-Routing-HOWTO/"
+    }, {
+        "title": "IPROUTE Utility Suite Howto",
+        "download_url": "http://www.policyrouting.com/iproute2.doc.html"
+    }, {
+        "title": "Task-centered iproute2 user guide",
+        "download_url": "https://baturin.org/docs/iproute2/"
+    }]
+}

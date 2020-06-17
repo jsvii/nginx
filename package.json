@@ -21,6 +21,9 @@
   },
   "homepage": "https://github.com/jsvii/nginx#readme",
   "dependencies": {
-    "lodash": "^4.17.15"
+    "jquery": "^3.5.1",
+    "lodash": "^4.17.15",
+    "materialize-css": "^1.0.0",
+    "pug": "^3.0.0"
   }
 }

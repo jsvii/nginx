@@ -1,0 +1,11 @@
+{
+    "title": "node.js",
+    "dir": "node",
+    "assets": [{
+        "title": "v8.x Documentation",
+        "download_url": "https://nodejs.org/docs/latest-v8.x/api/"
+    }, {
+        "title": "v12.x Documentation",
+        "download_url": "https://nodejs.org/docs/latest-v12.x/api/"
+    }]
+}

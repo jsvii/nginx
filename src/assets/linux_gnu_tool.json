@@ -1,0 +1,27 @@
+{
+    "title": "Gnu Linux Tools",
+    "dir": "linux_gnu",
+    "assets": [{
+        "title": "Core GNU utilities",
+        "download_url": "https://www.gnu.org/software/coreutils/manual/coreutils.html_node.tar.gz"
+    },{
+        "title": "GNU Wget",
+        "download_url": "https://www.gnu.org/software/wget/manual/wget.html_node.tar.gz",
+        "desc": "GNU Wget is a free utility for non-interactive download of files from the Web. It supports HTTP, HTTPS, and FTP protocols, as well as retrieval through HTTP proxies."
+    }, {
+        "title": "GNU Grep",
+        "download_url": "https://www.gnu.org/savannah-checkouts/gnu/grep/manual/grep.html.gz",
+        "desc": "grep prints lines that contain a match for one or more patterns."
+
+    }, {
+        "title": "GNU Sed",
+        "download_url": "https://www.gnu.org/software/sed/manual/sed.html_node.tar.gz",
+        "desc": "sed is a stream editor. A stream editor is used to perform basic text transformations on an input stream (a file or input from a pipeline). While in some ways similar to an editor which permits scripted edits (such as ed), sed works by making only one pass over the input(s), and is consequently more efficient. But it is sed’s ability to filter text in a pipeline which particularly distinguishes it from other types of editors."
+    }, {
+        "title": "Gawk",
+        "download_url": "https://www.gnu.org/software/gawk/manual/gawk.html_node.tar.gz"
+    }, {
+        "title": "A User's Guide for GNU AWK",
+        "download_url": "https://www.math.utah.edu/docs/info/gawk_toc.html"
+    }]
+}
