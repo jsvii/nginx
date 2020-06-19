@@ -46,19 +46,37 @@ echo "fileDIR is $fileDIR"
 
 ## just dir
 if [[ -d $fileDIR ]]; then
-    rm -rf $DEST_DIR;
-    cp -rf $fileDIR $DEST_DIR;
+    rm -rf $DEST_DIR
+    cp -rf $fileDIR $DEST_DIR
     echo "successful! dir is $DEST_DIR"
-    exit 0;
+    exit 0
 fi
 
 ## compress file
 if [[ $ASSET_URL =~ $TAR_FILE_REG ]]; then
-    TAR_FILE_NAME=${BASH_REMATCH[1]};
-    tar -xf $fileDIR --strip-components 1 --directory $DEST_DIR
-    echo "successful! dir is $DEST_DIR"
+    TAR_FILE_NAME=${BASH_REMATCH[1]}
+    FOLDER_NAME=`tar -tf $fileDIR | head -n 1`
+
+    if [[ $FOLDER_NAME =~ ".+/$" ]]; then
+        # is folder
+        tar -xf $fileDIR --strip-components 1 --directory $DEST_DIR
+    else
+        tar -xf $fileDIR --directory $DEST_DIR
+    fi
+
+    echo "successful uncompress: \n$fileDIR \n dir is $DEST_DIR"
+    exit 0
+fi
+
+## file exception compress files
+if [[ -f $fileDIR ]]; then
+    fileDIR=${fileDIR%/*}
+    rm -rf $DEST_DIR
+    cp -rf $fileDIR $DEST_DIR
+    echo "successful copy file!"
     exit 0;
 fi
+
 
 echo "I don't know!"
 exit 1

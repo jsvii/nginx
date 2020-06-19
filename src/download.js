@@ -17,6 +17,7 @@ const successFile = path.resolve(downloadPath, 'success-msg.log');
 const sysErrorFile = path.resolve(downloadPath, 'error.log');
 const downloadZshFile = path.resolve(__dirname, 'shell/download.zsh');
 const compiler = compileFile(path.resolve(__dirname, 'html/index.pug'), {encoding: 'utf8'});
+const staticFileReg = /(\/[^\/]+\.(?:html|xhtml|html))$/;
 const maxProcessNum = 5;
 
 async function download(jsonArr) {
@@ -31,6 +32,8 @@ async function download(jsonArr) {
         dir: downloadPath,
         assets: jsonArr
     });
+    // generate file after json configed
+    fsWriteFile(indexFile, compiler({ data: jsonArr }));
 
     {
         let num = maxProcessNum;
@@ -63,7 +66,6 @@ async function download(jsonArr) {
     fsWriteFile(errorFile, `${(new Date()).toLocaleString()}\n ${exeErrorMsgs.join('\n')}`);
     fsWriteFile(successFile, `${(new Date()).toLocaleString()}\n ${exeSuccessMsgs.join('\n')}`);
     fsWriteFile(sysErrorFile, `${(new Date()).toLocaleString()}\n ${sysErrorMsgs.join('\n')}`);
-    fsWriteFile(indexFile, compiler({ data: jsonArr }));
 
     async function handleDownload(json) {
         const { dir, download_url, destDir } = json;
@@ -123,6 +125,10 @@ async function download(jsonArr) {
 
         json.destDir = path.resolve(json.dir.replace(downloadPath, rootPath), getFileName(json.download_url));
         json.link = json.destDir.replace(rootPath, '');
+
+        if (staticFileReg.test(json.download_url)) {
+            json.link = json.link + (json.download_url.match(staticFileReg))[1];
+        }
 
         asyncArr.push(handleDownload.bind(null, json));
     };

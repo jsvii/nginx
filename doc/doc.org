@@ -2,6 +2,10 @@
 
 ** linux
 
-https://github.com/0xAX/linux-insides
+xv6 为自己修改的文档
 
-** ref
+** java
+
+- jdk8 doc   https://www.oracle.com/java/technologies/javase-jdk8-doc-downloads.html
+
+- jdk14 doc  https://www.oracle.com/java/technologies/javase-jdk14-doc-downloads.html

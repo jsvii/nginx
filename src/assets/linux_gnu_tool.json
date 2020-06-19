@@ -10,7 +10,7 @@
         "desc": "GNU Wget is a free utility for non-interactive download of files from the Web. It supports HTTP, HTTPS, and FTP protocols, as well as retrieval through HTTP proxies."
     }, {
         "title": "GNU Grep",
-        "download_url": "https://www.gnu.org/savannah-checkouts/gnu/grep/manual/grep.html.gz",
+        "download_url": "https://www.gnu.org/software/grep/manual/grep.html_node.tar.gz",
         "desc": "grep prints lines that contain a match for one or more patterns."
 
     }, {
