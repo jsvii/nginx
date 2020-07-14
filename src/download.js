@@ -33,7 +33,9 @@ async function download(jsonArr) {
         assets: jsonArr
     });
     // generate file after json configed
-    fsWriteFile(indexFile, compiler({ data: jsonArr }));
+    fsWriteFile(indexFile, compiler({
+        data: jsonArr
+    }));
 
     {
         let num = maxProcessNum;

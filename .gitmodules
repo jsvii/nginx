@@ -1,0 +1,3 @@
+[submodule "doc/cargo"]
+	path = doc/cargo
+	url = https://github.com/rust-lang/cargo.git
