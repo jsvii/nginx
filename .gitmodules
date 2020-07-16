@@ -1,5 +1,5 @@
 [submodule "doc/cargo"]
-	path = doc/cargo
+	path = doc/rust/cargo
 	url = https://github.com/rust-lang/cargo.git
 [submodule "doc/rust/book"]
 	path = doc/rust/book
@@ -17,5 +17,5 @@
 	path = doc/rust/edition_guide
 	url = https://github.com/rust-lang/edition-guide.git
 [submodule "doc/example"]
-	path = doc/example
+	path = doc/rust/example
 	url = https://github.com/rust-lang/rust-by-example.git
