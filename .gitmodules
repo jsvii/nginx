@@ -13,3 +13,9 @@
 [submodule "doc/nginx/wiki"]
 	path = doc/nginx/wiki
 	url = https://github.com/nginxinc/nginx-wiki.git
+[submodule "doc/rust/edition_guide"]
+	path = doc/rust/edition_guide
+	url = https://github.com/rust-lang/edition-guide.git
+[submodule "doc/example"]
+	path = doc/example
+	url = https://github.com/rust-lang/rust-by-example.git
