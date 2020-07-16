@@ -1,3 +1,15 @@
 [submodule "doc/cargo"]
 	path = doc/cargo
 	url = https://github.com/rust-lang/cargo.git
+[submodule "doc/rust/book"]
+	path = doc/rust/book
+	url = https://github.com/rust-lang/book.git
+[submodule "doc/rust/book_cn"]
+	path = doc/rust/book_cn
+	url = https://github.com/KaiserY/trpl-zh-cn.git
+[submodule "doc/rust/rustc_dev_guide"]
+	path = doc/rust/rustc_dev_guide
+	url = https://github.com/rust-lang/rustc-dev-guide.git
+[submodule "doc/nginx/wiki"]
+	path = doc/nginx/wiki
+	url = https://github.com/nginxinc/nginx-wiki.git
