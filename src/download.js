@@ -6,7 +6,7 @@ const { createHash } = require('crypto');
 const processExec = promisify(require('child_process').exec);
 const assert = require('assert');
 const { compileFile } = require('pug');
-const otherDocs = require('./assets/other_docs.json');
+const otherDocs = require('./assets/other/docs.json');
 
 const fsWriteFile = promisify(writeFile);
 const downloadPath = path.resolve(__dirname, '../.cached');
@@ -39,9 +39,7 @@ async function download(jsonArr) {
         data: jsonArr.concat(otherDocs)
     }));
 
-    //
-
-    //return;
+    return;
 
     /* 执行wget */
     {

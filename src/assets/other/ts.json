@@ -1,0 +1,8 @@
+[{
+    "title": "rust",
+    "assets": [{
+        "title": "cargo 文档",
+        "link": "/rust/cargo/",
+        "dir": "doc/rust/cargo/src/doc/book/"
+    }]
+}]

@@ -19,3 +19,9 @@
 [submodule "doc/example"]
 	path = doc/rust/example
 	url = https://github.com/rust-lang/rust-by-example.git
+[submodule "doc/typescript/TypeScript-Website"]
+	path = doc/typescript/TypeScript-Website
+	url = https://github.com/microsoft/TypeScript-Website.git
+[submodule "doc/deno/deno"]
+	path = doc/deno/deno
+	url = https://github.com/denoland/deno.git

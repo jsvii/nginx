@@ -18,6 +18,10 @@ do
     mdbook build
 done
 
+# build typescript site background
+cd $NGINX_PROJECT_ROOT/doc/typescript/TypeScript-Website
+npm run build-site &
+
 #  wget the assets
 npm install;
 
