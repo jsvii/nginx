@@ -16,3 +16,17 @@
 #+END_SRC
 
 ~dir~ 不配置就是继承
+
+
+[submodule "doc/rust/rust_book"]
+        path = doc/rust/rust_book
+        url = https://github.com/rust-lang/book.git
+[submodule "doc/rust/rust_book_cn"]
+        path = doc/rust/rust_book_cn
+        url = https://github.com/KaiserY/trpl-zh-cn.git
+[submodule "doc/rust/rustc_dev_guide"]
+        path = doc/rust/rustc_dev_guide
+        url = https://github.com/rust-lang/rustc-dev-guide.git
+[submodule "doc/nginx_wiki"]
+        path = doc/nginx_wiki
+        url = https://github.com/nginxinc/nginx-wiki.git

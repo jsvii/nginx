@@ -6,8 +6,8 @@ const { createHash } = require('crypto');
 const processExec = promisify(require('child_process').exec);
 const assert = require('assert');
 const { compileFile } = require('pug');
+const otherDocs = require('./assets/other_docs.json');
 
-const fsMkdir = promisify(writeFile);
 const fsWriteFile = promisify(writeFile);
 const downloadPath = path.resolve(__dirname, '../.cached');
 const rootPath = path.resolve(__dirname, '../root');
@@ -19,6 +19,7 @@ const downloadZshFile = path.resolve(__dirname, 'shell/download.zsh');
 const compiler = compileFile(path.resolve(__dirname, 'html/index.pug'), {encoding: 'utf8'});
 const staticFileReg = /(\/[^\/]+\.(?:html|xhtml|html))$/;
 const maxProcessNum = 5;
+
 
 async function download(jsonArr) {
     const asyncArr = [];
@@ -32,11 +33,17 @@ async function download(jsonArr) {
         dir: downloadPath,
         assets: jsonArr
     });
-    // generate file after json configed
+
+    // generate html file after json configed
     fsWriteFile(indexFile, compiler({
-        data: jsonArr
+        data: jsonArr.concat(otherDocs)
     }));
 
+    //
+
+    //return;
+
+    /* 执行wget */
     {
         let num = maxProcessNum;
         while(num > 0) {

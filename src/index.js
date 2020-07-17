@@ -3,6 +3,7 @@ const { promisify } = require('util');
 const path = require('path');
 const { trim } = require('lodash');
 const { download } = require('./download');
+const { genNginxConf } = require('./gen_nginxconf');
 const fsReadFile = promisify(readFile);
 const fsAccess = promisify(access);
 
@@ -10,6 +11,8 @@ const indexFile = path.resolve(__dirname, 'assets/index.conf');
 const COMMENT_SIGN = '#';
 
 (async () => {
+    genNginxConf();
+
     const indexTxt = await fsReadFile(indexFile, 'utf8');
     const jsons = indexTxt.split('\n')
           .filter((str) => { return (!!trim(str)) && (str.indexOf(COMMENT_SIGN) === -1); })
