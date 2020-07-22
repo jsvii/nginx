@@ -2,6 +2,7 @@ const { readFile, access } = require('fs');
 const { promisify } = require('util');
 const path = require('path');
 const { trim } = require('lodash');
+const parseArgv = require('./options');
 const { download } = require('./download');
 const { genNginxConf } = require('./gen_nginxconf');
 const fsReadFile = promisify(readFile);
@@ -10,7 +11,14 @@ const fsAccess = promisify(access);
 const indexFile = path.resolve(__dirname, 'assets/index.conf');
 const COMMENT_SIGN = '#';
 
+
+
+
 (async () => {
+
+    const { refreshPage } = parseArgv(process.argv);
+
+
     genNginxConf();
 
     const indexTxt = await fsReadFile(indexFile, 'utf8');
@@ -44,5 +52,5 @@ const COMMENT_SIGN = '#';
 
     const jsonContents = await Promise.all(allJsonPromise);
 
-    download(jsonContents);
+    download(jsonContents, refreshPage);
 })();

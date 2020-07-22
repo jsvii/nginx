@@ -32,4 +32,11 @@
         "link": "/xv6/",
         "dir": "doc/riscv/xv6/"
     }]
+}, {
+    "title": "babel",
+    "assets": [{
+        "title": "AST Explorer",
+        "link": "/babel/astexplorer/",
+        "dir": "doc/babel/astexplorer/out/"
+    }]
 }]

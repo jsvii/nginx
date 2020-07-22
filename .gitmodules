@@ -25,3 +25,6 @@
 [submodule "doc/deno/deno"]
 	path = doc/deno/deno
 	url = https://github.com/denoland/deno.git
+[submodule "doc/babel/astexplorer"]
+	path = doc/babel/astexplorer
+	url = https://github.com/fkling/astexplorer.git

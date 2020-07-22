@@ -1,32 +1,7 @@
 * nginx asset config
 
-** json
-#+BEGIN_SRC json
-{
-    "title": "linux",
-    "dir": "linux",
-    "assets": [{
-        "title": "The Open Group Base Specifications Issue 6 IEEE Std 1003.1, 2004 Edition",
-        "download_url": "https://pubs.opengroup.org/onlinepubs/009695399/"
-    }, {
-        "title": "The Open Group Base Specifications Issue 7, 2018 edition",
-        "download_url": "https://pubs.opengroup.org/onlinepubs/9699919799/"
-    }]
-}
+** 如何使用
+
+#+BEGIN_SRC bash
+./init.zsh
 #+END_SRC
-
-~dir~ 不配置就是继承
-
-
-[submodule "doc/rust/rust_book"]
-        path = doc/rust/rust_book
-        url = https://github.com/rust-lang/book.git
-[submodule "doc/rust/rust_book_cn"]
-        path = doc/rust/rust_book_cn
-        url = https://github.com/KaiserY/trpl-zh-cn.git
-[submodule "doc/rust/rustc_dev_guide"]
-        path = doc/rust/rustc_dev_guide
-        url = https://github.com/rust-lang/rustc-dev-guide.git
-[submodule "doc/nginx_wiki"]
-        path = doc/nginx_wiki
-        url = https://github.com/nginxinc/nginx-wiki.git

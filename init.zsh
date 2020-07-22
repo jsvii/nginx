@@ -2,25 +2,7 @@
 
 NGINX_PROJECT_ROOT=`pwd`
 
-# mdbooks, submodules path;
-mdbooks=(doc/rust/cargo/src/doc
-doc/rust/book
-doc/rust/book_cn
-doc/rust/rustc_dev_guide
-doc/rust/edition_guide
-doc/rust/example
-)
-
-for tempdir in $mdbooks
-do
-    tempdir=$NGINX_PROJECT_ROOT/$bookdir
-    cd tempdir
-    mdbook build
-done
-
-# build typescript site background
-cd $NGINX_PROJECT_ROOT/doc/typescript/TypeScript-Website
-npm run build-site &
+./docs_install.zsh &
 
 #  wget the assets
 npm install;
@@ -35,6 +17,7 @@ ln -s $NGINX_PROJECT_ROOT/src/html/style.css ./root/src/style.css
 
 ## npm build runs for a lot of time
 ## but the nginx.conf is  generated within a few minutes
+cd $NGINX_PROJECT_ROOT
 npm run build &
 sleep 3
 # link nginx files

@@ -5,7 +5,8 @@
     "main": "index.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
-        "build": "node src/index.js"
+        "build": "node src/index.js",
+        "refresh": "node src/index.js -r"
     },
     "repository": {
         "type": "git",
@@ -22,6 +23,7 @@
     },
     "homepage": "https://github.com/jsvii/nginx#readme",
     "dependencies": {
+        "commander": "^6.0.0",
         "handlebars": "^4.7.6",
         "jquery": "^3.5.1",
         "lodash": "^4.17.15",

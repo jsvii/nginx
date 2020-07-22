@@ -21,7 +21,7 @@ const staticFileReg = /(\/[^\/]+\.(?:html|xhtml|html))$/;
 const maxProcessNum = 5;
 
 
-async function download(jsonArr) {
+async function download(jsonArr, refreshPage) {
     const asyncArr = [];
     const promiseExec = [];
     const exeSuccessMsgs = [];
@@ -39,7 +39,10 @@ async function download(jsonArr) {
         data: jsonArr.concat(otherDocs)
     }));
 
-    return;
+    if (refreshPage) {
+        console.log('successfully refreshed, please restart nginx!');
+        return;
+    }
 
     /* 执行wget */
     {
