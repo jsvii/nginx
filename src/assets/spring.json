@@ -1,0 +1,8 @@
+{
+    "title": "spring",
+    "dir": "spring",
+    "assets": [{
+        "title": "Spring Docs",
+        "download_url": "https://repo.spring.io/release/org/springframework/spring/5.3.0/spring-5.3.0-docs.zip"
+    }]
+}
