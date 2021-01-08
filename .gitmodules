@@ -1,30 +1,30 @@
 [submodule "doc/cargo"]
-	path = doc/rust/cargo
+	path = root/doc/rust/cargo
 	url = https://github.com/rust-lang/cargo.git
 [submodule "doc/rust/book"]
-	path = doc/rust/book
+	path = root/doc/rust/book
 	url = https://github.com/rust-lang/book.git
 [submodule "doc/rust/book_cn"]
-	path = doc/rust/book_cn
+	path = root/doc/rust/book_cn
 	url = https://github.com/KaiserY/trpl-zh-cn.git
 [submodule "doc/rust/rustc_dev_guide"]
-	path = doc/rust/rustc_dev_guide
+	path = root/doc/rust/rustc_dev_guide
 	url = https://github.com/rust-lang/rustc-dev-guide.git
 [submodule "doc/nginx/wiki"]
-	path = doc/nginx/wiki
+	path = root/doc/nginx/wiki
 	url = https://github.com/nginxinc/nginx-wiki.git
 [submodule "doc/rust/edition_guide"]
-	path = doc/rust/edition_guide
+	path = root/doc/rust/edition_guide
 	url = https://github.com/rust-lang/edition-guide.git
 [submodule "doc/example"]
-	path = doc/rust/example
+	path = root/doc/rust/example
 	url = https://github.com/rust-lang/rust-by-example.git
 [submodule "doc/typescript/TypeScript-Website"]
-	path = doc/typescript/TypeScript-Website
+	path = root/doc/typescript/TypeScript-Website
 	url = https://github.com/microsoft/TypeScript-Website.git
 [submodule "doc/deno/deno"]
-	path = doc/deno/deno
+	path = root/doc/deno/deno
 	url = https://github.com/denoland/deno.git
 [submodule "doc/babel/astexplorer"]
-	path = doc/babel/astexplorer
+	path = root/doc/babel/astexplorer
 	url = https://github.com/fkling/astexplorer.git
