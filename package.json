@@ -6,7 +6,8 @@
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
         "build": "node src/index.js",
-        "refresh": "node src/index.js -r"
+        "index-page": "node src/index.js --refresh-page",
+        "nginx-config": "node src/index.js --update-nginxconfig"
     },
     "repository": {
         "type": "git",

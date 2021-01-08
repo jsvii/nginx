@@ -1,13 +1,15 @@
 const commander = require('commander');
 
 commander
-    .option('-r, --refresh-page', 'just refresh the page', false);
+    .option('--refresh-page', 'just refresh the page', false)
+    .option('--update-nginxconfig', 'just update nginx config', false);;
 
 module.exports = function parseArgv(argv) {
     commander.parse(argv);
-    const opt = commander.opts();
+    const { refreshPage, updateNginxconfig} = commander.opts();
 
     return {
-        refreshPage: opt.refreshPage
+        refreshPage,
+        updateNginxconfig
     };
 };

@@ -39,4 +39,18 @@
         "link": "/babel/astexplorer/",
         "dir": "doc/babel/astexplorer/out/"
     }]
+}, {
+    "title": "algorithm",
+    "assets": [{
+        "title": "Data Structure Visualizations",
+        "link": "/algorithms/",
+        "dir": "doc/algorithms/"
+    }]
+},  {
+    "title": "typescript",
+    "assets": [{
+        "title": "Typescript Doc",
+        "link": "http://ts.doc/",
+        "dir": "doc/typescript/TypeScript-Website/packages/typescriptlang-org/public/"
+    }]
 }]

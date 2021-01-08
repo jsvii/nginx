@@ -4,7 +4,7 @@ const path = require('path');
 const { trim } = require('lodash');
 const parseArgv = require('./options');
 const { download } = require('./download/download');
-const { genNginxConf } = require('./gen_nginxconf');
+const { genNginxConf } = require('./nginx');
 const fsReadFile = promisify(readFile);
 const fsAccess = promisify(access);
 const ASSET_DIR = path.resolve(__dirname, 'assets');
@@ -13,9 +13,13 @@ const COMMENT_SIGN = '#';
 
 (async () => {
 
-    const { refreshPage } = parseArgv(process.argv);
+    const { refreshPage, updateNginxconfig } = parseArgv(process.argv);
 
     genNginxConf();
+
+    if (updateNginxconfig) {
+        return;
+    }
 
     const indexTxt = await fsReadFile(indexFile, 'utf8');
     const jsons = indexTxt.split('\n')

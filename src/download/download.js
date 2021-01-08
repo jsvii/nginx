@@ -15,7 +15,7 @@ const errorFile = path.resolve(downloadPath, 'error-msg.log');
 const successFile = path.resolve(downloadPath, 'success-msg.log');
 const sysErrorFile = path.resolve(downloadPath, 'error.log');
 const downloadZshFile = path.resolve(__dirname, '../shell/download.zsh');
-const compiler = compileFile(path.resolve(__dirname, '../html/index.pug'), {encoding: 'utf8'});
+const compiler = compileFile(path.resolve(__dirname, 'template/index.pug'), {encoding: 'utf8'});
 const staticFileReg = /(\/[^\/]+\.(?:html|xhtml|html))$/;
 const maxProcessNum = 5;
 
@@ -31,11 +31,11 @@ async function download(jsonArr, refreshPage) {
     const exeErrorMsgs = [];
     const sysErrorMsgs = [];
 
-    genAsync({
+    genDownloadPromiseFun({
         title: "app doc",
         dir: downloadPath,
         assets: jsonArr
-    });
+    }, '');
 
     // generate html file after json configed
     fsWriteFile(indexFile, compiler({
@@ -43,11 +43,15 @@ async function download(jsonArr, refreshPage) {
     }));
 
     if (refreshPage) {
-        console.log('successfully refreshed, please restart nginx!');
+        console.log('successfully refreshed index.html!');
         return;
     }
 
-    /* 执行wget */
+    /*
+     * 执行wget,
+     * 进程数，先放入与进程数相同的promise
+     * 放入Promise.resolve(true) 是为了方便后面写.then
+     */
     {
         let num = maxProcessNum;
         while(num > 0) {
@@ -56,6 +60,10 @@ async function download(jsonArr, refreshPage) {
         }
     }
 
+    /*
+     * 再让asyncArr中的promise 函数一一放入
+     *
+     */
     while(asyncArr.length > 0) {
         promiseExec.forEach((p, index) => {
             const exe = asyncArr.pop();
@@ -106,43 +114,38 @@ async function download(jsonArr, refreshPage) {
         return true;
     }
 
-
-    function genIndex(json) {
-
-    }
-
     /**
+     *
      * 本来配置的就只有一层
      */
-    function genAsync(json, parentDir) {
-        let subDir = parentDir;
-
+    function genDownloadPromiseFun(json, parentDir) {
         if (json.assets && json.assets.length > 0) {
+            let currentDir = parentDir;
             /* 只有 目录需要dir，文件是shell 分析出来的 */
             if (json.dir) {
-                subDir = path.resolve(parentDir, json.dir);
+                currentDir = path.resolve(parentDir, json.dir);
             }
 
             //  递归生成目录与
             json.assets.forEach((json) => {
-                genAsync(json, subDir);
+                genDownloadPromiseFun(json, currentDir);
             });
 
             return;
         }
 
+        // 没有存在downloadUrl 又没有 dir
+        if (!trim(json.download_url) && !trim(json.dir)) {
+            console.error('a config err', JSON.stringify(json));
+            throw new Error(
+                '配置错误'
+            );
+            process.exit(1);
+
+        }
 
         // 下载的位置
-        json.dir = subDir;
-
-
-        try {
-            assert(!!trim(json.download_url));
-        } catch(e) {
-            console.error('a config err', JSON.stringify(json));
-            console.log(e);
-            process.exit(1);
-        }
+        json.dir = parentDir;
 
         // 为其生成hash路由
         json.destDir = path.resolve(json.dir.replace(downloadPath, rootPath), getFileName(json.download_url));
@@ -152,6 +155,9 @@ async function download(jsonArr, refreshPage) {
             json.link = json.link + (json.download_url.match(staticFileReg))[1];
         }
 
+        /*
+         * 之所以bind是因为而未执行，也不是这里执行
+         */
         asyncArr.push(handleDownload.bind(null, json));
     };
 
