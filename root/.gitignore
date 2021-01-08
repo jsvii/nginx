@@ -2,4 +2,4 @@
 *.*
 !.gitignore
 !software
-!algorithms/**/*
+!doc/**/*
