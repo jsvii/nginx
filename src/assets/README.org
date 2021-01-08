@@ -1,0 +1,60 @@
+#+TITLE: assets 说明
+
+* docs/*.json
+
+所有文件仅有一层
+
+#+BEGIN_SRC json
+{
+    "title": "emacs",
+    "dir": "emacs",
+    "assets": [{
+        "title": "The Emacs Editor",
+        "download_url": "https://www.gnu.org/software/emacs/manual/html_node/emacs/index.html"
+    }, {
+        "title": "An Introduction to Programming in Emacs Lisp",
+        "download_url": "https://www.gnu.org/software/emacs/manual/html_node/eintr/index.html"
+    }, {
+        "title": "Emacs Lisp",
+        "download_url": "https://www.gnu.org/software/emacs/manual/html_node/elisp/index.html"
+    }, {
+        "title": "Magit User Manual",
+        "download_url": "https://magit.vc/manual/2.90.1/magit/"
+    },{
+        "title": "Geiser",
+        "download_url": "https://www.nongnu.org/geiser/"
+    }]
+}
+#+END_SRC
+
+
+* todo
+
+** lisp
+
+*** common lisp
+
+1. [[./acl/zhCN/][Ansi Common Lisp]]
+
+1. [[./on-lisp/][On Lisp]]
+
+**** SICP
+
+**** biwa scheme
+
+1. [[./biwa/][biwa]]
+
+1. [[./biwa/test/tracer.html][BiwaSscheme Tracer]]
+
+
+** haskell
+
+1. [[./rwh/][Real World Haskell]]
+
+1. [[./stack-v1.0.2/][The Haskell Tool Stack]]
+
+1. [[./scheme48/][Write Yourself a Scheme in 48 Hours]]
+
+1. [[./rwh/][Introduction to Haskell (Spring 2013)]]
+
+1. [[./learnyouahaskell/chapters][Learn You a Haskell for Great Good!]]

@@ -6,21 +6,24 @@ const { createHash } = require('crypto');
 const processExec = promisify(require('child_process').exec);
 const assert = require('assert');
 const { compileFile } = require('pug');
-const otherDocs = require('./assets/other/docs.json');
-
+const otherDocs = require('../assets/other/docs.json');
 const fsWriteFile = promisify(writeFile);
-const downloadPath = path.resolve(__dirname, '../.cached');
-const rootPath = path.resolve(__dirname, '../root');
+const downloadPath = path.resolve(__dirname, '../../.cached');
+const rootPath = path.resolve(__dirname, '../../root');
 const indexFile = path.resolve(rootPath, 'index.html');
 const errorFile = path.resolve(downloadPath, 'error-msg.log');
 const successFile = path.resolve(downloadPath, 'success-msg.log');
 const sysErrorFile = path.resolve(downloadPath, 'error.log');
-const downloadZshFile = path.resolve(__dirname, 'shell/download.zsh');
-const compiler = compileFile(path.resolve(__dirname, 'html/index.pug'), {encoding: 'utf8'});
+const downloadZshFile = path.resolve(__dirname, '../shell/download.zsh');
+const compiler = compileFile(path.resolve(__dirname, '../html/index.pug'), {encoding: 'utf8'});
 const staticFileReg = /(\/[^\/]+\.(?:html|xhtml|html))$/;
 const maxProcessNum = 5;
 
-
+/**
+ * download
+ * @param jsonArray 所有 *.json 文件的数组
+ * @param refreshPage 如果为true说明只更新html文件
+ */
 async function download(jsonArr, refreshPage) {
     const asyncArr = [];
     const promiseExec = [];
@@ -108,6 +111,9 @@ async function download(jsonArr, refreshPage) {
 
     }
 
+    /**
+     * 本来配置的就只有一层
+     */
     function genAsync(json, parentDir) {
         let subDir = parentDir;
 
@@ -116,6 +122,8 @@ async function download(jsonArr, refreshPage) {
             if (json.dir) {
                 subDir = path.resolve(parentDir, json.dir);
             }
+
+            //  递归生成目录与
             json.assets.forEach((json) => {
                 genAsync(json, subDir);
             });
@@ -123,7 +131,10 @@ async function download(jsonArr, refreshPage) {
             return;
         }
 
+
+        // 下载的位置
         json.dir = subDir;
+
 
         try {
             assert(!!trim(json.download_url));
@@ -133,6 +144,7 @@ async function download(jsonArr, refreshPage) {
             process.exit(1);
         }
 
+        // 为其生成hash路由
         json.destDir = path.resolve(json.dir.replace(downloadPath, rootPath), getFileName(json.download_url));
         json.link = json.destDir.replace(rootPath, '');
 
